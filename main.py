@@ -1,15 +1,3 @@
-"""
-it will find all domain from newdomains.txt from root directory, and will remove the duplicated one, the it will read one bye one the domains (uniqe list of domains)
-then will pass them to the recon function.
-this tools has this capabilities:
-create folder for new domains,
-it will find all ips which Belong to one ASN umber.
-find all subdomains from deferrent resources.
-combine them all in one file. (without_duplication.txt)
-find all alive subdomain from that (alive_subdomain.txt)
-taking screen shots for but subdomains, and all link whihc found from alive_subdomain via dirsearch
-curl on alive_subdomain.txt
-"""
 # !/usr/bin/python3
 from optparse import OptionParser
 import subprocess
@@ -20,12 +8,11 @@ import requests
 from urllib import request
 
 
-def getipblock(domain):  # it will grip all subnet associated to the given domain base on ASN number
-    # first it will get target ip, then will curl the ip-api.com website, to find ASN number, then filter all ips form that packet.
-    """domainip = subprocess.run(f"ping {domain} -c 1 | grep '64 bytes'", shell=True, capture_output=True, text=True)
+def getipblock(domain):  
+    domainip = subprocess.run(f"ping {domain} -c 1 | grep '64 bytes'", shell=True, capture_output=True, text=True)
     result = re.search(r'\d*\.\d*\.\d*\.\d*', str(domainip))
     if result:
-        ip = str(result.group(0))"""
+        ip = str(result.group(0))
     with open('asnfile.json', 'w') as f:
         subprocess.run(f"curl -s http://ip-api.com/json/{domain}", shell=True, stdout=f, text=True)
     ASNnumber = subprocess.run("cat asnfile.json | jq -r .as | cut -d' ' -f1", shell=True, capture_output=True,
@@ -67,7 +54,7 @@ def taking_screenshots(domain):
             subprocess.run(f'rm /opt/EyeWitness/Python/live_{domain}.txt', shell=True)
 
         subdomain_screenshots(domain)
-        #dirsearch_screeenshots(domain)
+        dirsearch_screeenshots(domain)
 def filecominer():
         path = os.getcwd()
         os.chdir(path)
@@ -84,13 +71,13 @@ def filecominer():
                         f.close()
 
             for file in os.listdir():
-                # Check whether file is in text format or not
+               
                 if file.endswith(".json"):
                     file_path = f"{path}/{file}"
                     read_json_file(file_path)
 
         def combiner():
-            # will read one file and it will return the value of that
+           
             def read_text_file(file_path):
                 with open(file_path, 'r') as f:
                     return f.read()
