@@ -1,4 +1,3 @@
-
 # !/usr/bin/python3
 from optparse import OptionParser
 import subprocess
@@ -7,20 +6,36 @@ import os
 import json
 import requests
 from urllib import request
-import random
-import requests
-import warnings
-import argparse
-from plugins.banner import *
-from bs4 import BeautifulSoup
-from core.bug import crlfScanFunc
-from payload.payload import sourcesSinks
-from core.gatherurls import getAllURLsFunc
-from core.features import requesterFunc, multitest
+def print_banner():
+    banner = """
+\033[1;36m █████╗  ██████╗ ███████╗██████╗ ███████╗████████╗████████╗\033[0m
+\033[1;36m██╔══██╗██╔═══██╗██╔════╝██╔══██╗██╔════╝╚══██╔══╝╚══██╔══╝\033[0m
+\033[1;36m███████║██║   ██║███████╗██████╔╝█████╗     ██║      ██║   \033[0m
+\033[1;36m██╔══██║██║   ██║╚════██║██╔═══╝ ██╔══╝     ██║      ██║   \033[0m
+\033[1;36m██║  ██║╚██████╔╝███████║██║     ███████╗   ██║      ██║   \033[0m
+\033[1;36m╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚═╝     ╚══════╝   ╚═╝      ╚═╝   \033[0m
+                 #AUTOMATED OPEN SOURCE PENETRATION TESTING TOOL     
+\033[1;36mRSaadat\033[0m
+    """
+    banner_centered = banner.center(len(max(banner.split("\n"), key=len)))
+    print(banner_centered)
+print_banner()
+def getipblock(domain): 
+    def print_banner():
+        banner = """
+    \033[1;36m █████╗  ██████╗ ███████╗██████╗ ███████╗████████╗████████╗\033[0m
+    \033[1;36m██╔══██╗██╔═══██╗██╔════╝██╔══██╗██╔════╝╚══██╔══╝╚══██╔══╝\033[0m
+    \033[1;36m███████║██║   ██║███████╗██████╔╝█████╗     ██║      ██║   \033[0m
+    \033[1;36m██╔══██║██║   ██║╚════██║██╔═══╝ ██╔══╝     ██║      ██║   \033[0m
+    \033[1;36m██║  ██║╚██████╔╝███████║██║     ███████╗   ██║      ██║   \033[0m
+    \033[1;36m╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚═╝     ╚══════╝   ╚═╝      ╚═╝   \033[0m
+            \033[1;38;2;0;206;209mAOSPeTT is running to Find all IPs\033[0m            
+    \033[1;36mRSaadat\033[0m
+        """
+        banner_centered = banner.center(len(max(banner.split("\n"), key=len)))
+        print(banner_centered)
 
-
-def getipblock(domain):  # it will grip all subnet associated to the given domain base on ASN number
-    # first it will get target ip, then will curl the ip-api.com website, to find ASN number, then filter all ips form that packet.
+    print_banner()
     """domainip = subprocess.run(f"ping {domain} -c 1 | grep '64 bytes'", shell=True, capture_output=True, text=True)
     result = re.search(r'\d*\.\d*\.\d*\.\d*', str(domainip))
     if result:
@@ -48,6 +63,21 @@ def dirsearch(domain):
     subprocess.run(f'rm live_{domain}.txt', shell=True)
     subprocess.run(f'rm -rf reports', shell=True)
 def taking_screenshots(domain):
+        def print_banner():
+            banner = """
+                \033[1;36m █████╗  ██████╗ ███████╗██████╗ ███████╗████████╗████████╗\033[0m
+                \033[1;36m██╔══██╗██╔═══██╗██╔════╝██╔══██╗██╔════╝╚══██╔══╝╚══██╔══╝\033[0m
+                \033[1;36m███████║██║   ██║███████╗██████╔╝█████╗     ██║      ██║   \033[0m
+                \033[1;36m██╔══██║██║   ██║╚════██║██╔═══╝ ██╔══╝     ██║      ██║   \033[0m
+                \033[1;36m██║  ██║╚██████╔╝███████║██║     ███████╗   ██║      ██║   \033[0m
+                \033[1;36m╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚═╝     ╚══════╝   ╚═╝      ╚═╝   \033[0m
+                            \033[1;36mAOSPeTT is Running for Tacking Screenshots\033[0m
+                \033[1;36mRSaadat\033[0m
+                    """
+            banner_centered = banner.center(len(max(banner.split("\n"), key=len)))
+            print(banner_centered)
+
+        print_banner()
         def dirsearch_screeenshots(domain):
             print('Tacking Screenshots: ')
             subprocess.run(f"cp ./{domain}/subdomains/dirsearch/dURL.txt /opt/EyeWitness/Python", shell=True)
@@ -137,15 +167,31 @@ def report(domain):
         subprocess.run(f'wc ./{domain}/domains/amass{domain}.txt | anew {domain}/reports.txt', shell=True)
         subprocess.run(f'wc ./{domain}/subdomains/dirsearch/dURL.txt | anew {domain}/reports.txt', shell=True)
 def getsubdomains(domain):
+        def print_banner():
+            banner = """
+            \033[1;36m █████╗  ██████╗ ███████╗██████╗ ███████╗████████╗████████╗\033[0m
+            \033[1;36m██╔══██╗██╔═══██╗██╔════╝██╔══██╗██╔════╝╚══██╔══╝╚══██╔══╝\033[0m
+            \033[1;36m███████║██║   ██║███████╗██████╔╝█████╗     ██║      ██║   \033[0m
+            \033[1;36m██╔══██║██║   ██║╚════██║██╔═══╝ ██╔══╝     ██║      ██║   \033[0m
+            \033[1;36m██║  ██║╚██████╔╝███████║██║     ███████╗   ██║      ██║   \033[0m
+            \033[1;36m╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚═╝     ╚══════╝   ╚═╝      ╚═╝   \033[0m
+                        \033[1;36mAOSPeTT is Running for collecting All subdomains\033[0m
+            \033[1;36mRSaadat\033[0m
+                """
+            banner_centered = banner.center(len(max(banner.split("\n"), key=len)))
+            print(banner_centered)
+
+        print_banner()
         subprocess.run(f"assetfinder -subs-only {domain} | tee ./{domain}/subdomains/assetfinder{domain}.txt",
                        shell=True)
 
         subprocess.run(f"sublist3r.py -d {domain} -v -t 200 -o ./{domain}/subdomains/sublister{domain}.txt", shell=True)
-        subprocess.run(f"amass intel -d {domain} -whois | tee ./{domain}/domains/amass{domain}.txt", shell=True)
+        #subprocess.run(f"amass intel -d {domain} -whois | tee ./{domain}/domains/amass{domain}.txt", shell=True)
         subprocess.run(f"subfinder -d {domain}  -o ./{domain}/subdomains/subfinder{domain}.txt", shell=True) # it can accept a list
-        #subprocess.run(f"amass enum -passive -d {domain} -o ./{domain}/subdomains/amassenum{domain}.txt", shell=True)
+        subprocess.run(f"amass enum -passive -d {domain} -o ./{domain}/subdomains/amassenum{domain}.txt", shell=True)
         subprocess.run(f"knockpy.py {domain} -th 200 -o ./{domain}/subdomains/.", shell=True)
         def getcrtsh_subdomains(domain):
+
             subdomains = set()
             wildcardsubdomains = set()
             BASE_URL = f"https://crt.sh/?q={domain}&output=json"
@@ -167,148 +213,6 @@ def getsubdomains(domain):
                                         wildcardsubdomains.add(subname_value)
             except:
                 pass
-            def openred()
-                parser = argparse.ArgumentParser(usage="Help Menu")
-                parser.add_argument('-u', help='Domain Name.', dest="url")
-                parser.add_argument('-l', help='Multiple targets. (Ex: domains.txt)', dest='path')
-                parser.add_argument('-crlf', help='Scan CRLF Injection.', action='store_true', dest='crlf')
-                parser.add_argument('-p', help='Use payloads file.', dest="payload", default="text/payloads.txt")
-                parser.add_argument('--proxy', help='use proxy', action='store_true', dest='proxy')
-                parser.add_argument('--wayback', help='fetch URLs from waybackmachine', action="store_true",
-                                    dest='waybacks')
-                args = parser.parse_args()
-
-                url = args.url
-
-                if ((args.payload != "text/payloads.txt") and (args.crlf or args.waybacks)):
-                    print(f"{bold}{red} '-p' can't be used with '-crlf' or '--wayback'{reset}")
-                    quit()
-
-                if not (args.url or args.path):
-                    print(f"{orange}No arguments, Run -h for help{reset}")
-
-                if not args.crlf and not args.waybacks:
-                    try:
-                        file = open(args.payload, encoding='utf-8').read().splitlines()
-                    except FileNotFoundError:
-                        print(f"{bold}{red}Payload file not found{reset}")
-                        exit()
-
-                if args.path:
-                    try:
-                        urls = open(args.path, encoding='utf-8').read().splitlines()
-                    except FileNotFoundError:
-                        print(f"{bold}{red}Target file not found{reset}")
-                        quit()
-
-                def analyze(url):
-                    multiTestCall = multitest(url, file)
-                    print(f'{bold}{orange}[~] Payload Type :{reset}{blue} Infusing payloads\n{reset}')
-                    if type(multiTestCall) == tuple:
-                        for params in multiTestCall[0]:
-                            testingBreak = request(multiTestCall[1], params)
-                            if testingBreak:
-                                break
-                    else:
-                        for url in multiTestCall:
-                            testingBreak = request(url)
-                            if testingBreak:
-                                break
-
-                def request(URI, params=''):
-                    try:
-                        page = requesterFunc(URI, args.proxy, params)
-                    except requests.exceptions.Timeout:
-                        print(f"[Timeout] {url}")
-                        return True
-                    except requests.exceptions.ConnectionError:
-                        print(f"{bold}{red}Connection Error{reset}")
-                        return True
-
-                    funcBreak = check(page, page.request.url)
-                    if funcBreak:
-                        return True
-
-                def check(requestsObjectVar, finalURL):
-                    payload = "|".join([re.escape(i) for i in file])
-                    redirectCodes = [red for red in range(300, 311, 1)]
-                    errorCodes = [error for error in range(400, 411, 1)]
-                    soup = BeautifulSoup(requestsObjectVar.text, 'html.parser')
-                    google = re.search(payload, str(soup.find_all("script")), re.IGNORECASE)
-                    metas = str(soup.find_all('meta'))
-                    searchMetaTagVar = re.search(payload, metas, re.IGNORECASE)
-
-                    escapedSourcesSinks = [re.escape(SnS) for SnS in sourcesSinks]
-                    sourcesMatch = list(dict.fromkeys(re.findall(
-                        "|".join(escapedSourcesSinks), str(soup))))
-
-                    if requestsObjectVar.status_code in redirectCodes:
-                        if searchMetaTagVar and "http-equiv=\"refresh\"" in metas:
-                            print(f"{bold}{green}Meta Tag Redirection{reset}")
-                            return True
-
-                        else:
-                            print(
-                                f"{bold}{green}[~] Header Based Redirection :{reset}{purple}{finalURL} {requestsObjectVar.headers['Location']}\n")
-
-                    elif requestsObjectVar.status_code == 200:
-                        if google:
-                            print(f"{bold}{green}[~] Javascript Based Redirection{reset}")
-                            if sourcesMatch != None:
-                                print(f"{bold}{green}Potentially Vulnerable Source/Sink(s) Found: %s" % (
-                                    " ".join(sourcesMatch)))
-                            return True
-
-                        if searchMetaTagVar and "http-equiv=\"refresh\"" in str(requestsObjectVar.text):
-                            print(f"{bold}{green}Meta Tag Redirection{reset}")
-                            return True
-
-                        elif "http-equiv=\"refresh\"" in str(requestsObjectVar.text) and not searchMetaTagVar:
-                            print(f"{bold}{red}The page is only getting refreshed.{reset}")
-                            return True
-
-                    elif requestsObjectVar.status_code in errorCodes:
-                        print(f"{bold}{red} {finalURL} {orange} {requestsObjectVar.status_code}{reset}")
-
-                    else:
-                        print(f"{bold}{red} Found nothing :: {finalURL}")
-
-                try:
-                    if args.url:
-                        if args.crlf and not args.waybacks:
-                            crlfScanFunc(url, args.proxy)
-
-                        elif args.waybacks and not args.crlf:
-                            print(f"{bold}{orange}Getting URLs from waybackmachine{reset}")
-                            getAllURLsFunc(url, "wayback_data.txt")
-
-                        elif not (args.crlf and args.waybacks):
-                            analyze(url)
-
-                    elif args.path:
-                        if args.crlf and not args.waybacks:
-                            for url in urls:
-                                print(f"{bold}{orange}Target: {url}")
-                                crlfScanFunc(url, args.proxy)
-                                print("\n")
-
-                        elif args.waybacks and not args.crlf:
-                            print(f"{bold}{orange}Getting URLs from waybackmachine")
-                            for url in urls:
-                                print(f"{bold}{orange}URL: {url}")
-                                getAllURLsFunc(url, f"wayback_{random.randint(0, 1000)}.txt")
-                                print("\n")
-
-                        elif not (args.crlf and args.waybacks):
-                            for url in urls:
-                                print(f"{bold}{orange}Target: {blue}{url}{reset}")
-                                analyze(url)
-                                print("\n")
-
-                except KeyboardInterrupt:
-                    print("\nKeyboard Interrupt Detected. Exiting...")
-                    exit()
-            openred()
 
             for subdomain in subdomains:
                 with open('crtsh_subdomain.txt', 'a') as f:
@@ -413,10 +317,40 @@ def getsubdomains(domain):
         subprocess.run(f'rm *.txt', shell=True)
         subprocess.run('mv domains/newdomains.txt .', shell=True)
 def geturls(domain):
+    def print_banner():
+        banner = """
+        \033[1;36m █████╗  ██████╗ ███████╗██████╗ ███████╗████████╗████████╗\033[0m
+        \033[1;36m██╔══██╗██╔═══██╗██╔════╝██╔══██╗██╔════╝╚══██╔══╝╚══██╔══╝\033[0m
+        \033[1;36m███████║██║   ██║███████╗██████╔╝█████╗     ██║      ██║   \033[0m
+        \033[1;36m██╔══██║██║   ██║╚════██║██╔═══╝ ██╔══╝     ██║      ██║   \033[0m
+        \033[1;36m██║  ██║╚██████╔╝███████║██║     ███████╗   ██║      ██║   \033[0m
+        \033[1;36m╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚═╝     ╚══════╝   ╚═╝      ╚═╝   \033[0m
+                    \033[1;36mAOSPeTT is Running for getting all Urls of target\033[0m
+        \033[1;36mRSaadat\033[0m
+            """
+        banner_centered = banner.center(len(max(banner.split("\n"), key=len)))
+        print(banner_centered)
+
+    print_banner()
     subprocess.run(f"cp ./{domain}/subdomains/live_{domain}.txt .", shell=True)
     subprocess.run(f'cat live_{domain}.txt | waybackurls | tee allurls.txt', shell=True)
     subprocess.run(f"mv allurls.txt {domain}/urls", shell=True)
 def xss(domain):
+    def print_banner():
+        banner = """
+        \033[1;36m █████╗  ██████╗ ███████╗██████╗ ███████╗████████╗████████╗\033[0m
+        \033[1;36m██╔══██╗██╔═══██╗██╔════╝██╔══██╗██╔════╝╚══██╔══╝╚══██╔══╝\033[0m
+        \033[1;36m███████║██║   ██║███████╗██████╔╝█████╗     ██║      ██║   \033[0m
+        \033[1;36m██╔══██║██║   ██║╚════██║██╔═══╝ ██╔══╝     ██║      ██║   \033[0m
+        \033[1;36m██║  ██║╚██████╔╝███████║██║     ███████╗   ██║      ██║   \033[0m
+        \033[1;36m╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚═╝     ╚══════╝   ╚═╝      ╚═╝   \033[0m
+                    \033[1;36mAOSPeTT is Running for Checking XSS vulnerability \033[0m
+        \033[1;36mRSaadat\033[0m
+            """
+        banner_centered = banner.center(len(max(banner.split("\n"), key=len)))
+        print(banner_centered)
+
+    print_banner()
     subprocess.run(f"cp ./{domain}/urls/allurls.txt .", shell=True)
     subprocess.run(
         f"cat allurls.txt | grep '=' | egrep -iv '.(jpg|jpeg|gif|css|tif|tiff|png|ttf|woff|woff2|ico|pdf|svg|txt|js)' | tee filtered.txt",
@@ -574,6 +508,21 @@ def filterurl():
             f.write(line + '\n')
         f.close()
 def openredirect(domain):
+    def print_banner():
+        banner = """
+        \033[1;36m █████╗  ██████╗ ███████╗██████╗ ███████╗████████╗████████╗\033[0m
+        \033[1;36m██╔══██╗██╔═══██╗██╔════╝██╔══██╗██╔════╝╚══██╔══╝╚══██╔══╝\033[0m
+        \033[1;36m███████║██║   ██║███████╗██████╔╝█████╗     ██║      ██║   \033[0m
+        \033[1;36m██╔══██║██║   ██║╚════██║██╔═══╝ ██╔══╝     ██║      ██║   \033[0m
+        \033[1;36m██║  ██║╚██████╔╝███████║██║     ███████╗   ██║      ██║   \033[0m
+        \033[1;36m╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚═╝     ╚══════╝   ╚═╝      ╚═╝   \033[0m
+                    \033[1;36mAOSPeTT is Running for Tacking OpenRedirect\033[0m
+        \033[1;36mRSaadat\033[0m
+            """
+        banner_centered = banner.center(len(max(banner.split("\n"), key=len)))
+        print(banner_centered)
+
+    print_banner()
     subprocess.run(f"cp ./{domain}/subdomains/live_{domain}.txt .", shell=True)
     subprocess.run(f"cp {domain}/urls/allurls.txt .", shell=True)
     filterurl()
@@ -615,7 +564,7 @@ def recon(domain):
     getipblock(domain)
     getsubdomains(domain)
     dirsearch(domain)
-    #taking_screenshots(domain)
+    taking_screenshots(domain)
     geturls(domain)
     xss(domain)
     openredirect(domain)
